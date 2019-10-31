@@ -1,2 +1,4 @@
-# In this code chunk, assign a value to the variable `x`
+
 x <- 100
+# In this code chunk, assign a value to the variable `x`
+
