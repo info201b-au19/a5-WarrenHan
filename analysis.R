@@ -1,5 +1,7 @@
 data <- read.csv("data/shootings-2018.csv", 
                  stringsAsFactors = FALSE)
+
+data$damage = data$num_killed + data$num_injured
 state_pop <- read.csv("data/State Populations.csv")
 library("dplyr")
 library("ggplot2")
@@ -80,6 +82,7 @@ by_pop <- group_by(with_pop, state) %>%
 
 cleaned_by_pop <- na.omit(by_pop) 
 
+# ggplot states by size and state 
 
   
   
