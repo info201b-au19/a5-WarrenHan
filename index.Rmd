@@ -28,7 +28,7 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-In 2018, a total of `{r number_of_shootings} ` occurred in the United States. A total of `{r number_lives_lost} ` were lost and the city most impacted (impact is measured as the sum of victims killed and victims injured) was `{r most_impacted_city} `. Further analysis was done broadly dividing the United States into two reigons; West and East of the Mississippi. The longitude used to create the reigons was -90 degrees. East of the Mississippi, the impact score totaled, `{r e_miss} `.vWest of the Mississippi scored, `{r w_miss} `. 
+In 2018, a total of r number_of_shootings occurred in the United States. A total of r number_lives_lost were lost and the city most impacted (impact is measured as the sum of victims killed and victims injured) was `most_impacted_city`. Further analysis was done broadly dividing the United States into two reigons; West and East of the Mississippi. The longitude used to create the reigons was -90 degrees. East of the Mississippi, the impact score totaled, `e_miss`.vWest of the Mississippi scored, `w_miss`. 
 
 
 
