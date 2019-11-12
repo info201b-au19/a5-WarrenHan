@@ -1,11 +1,12 @@
+library("dplyr")
+library("ggplot2")
+library("plotly")
 data <- read.csv("data/shootings-2018.csv", 
                  stringsAsFactors = FALSE)
 
 data$damage = data$num_killed + data$num_injured
 state_pop <- read.csv("data/State Populations.csv")
-library("dplyr")
-library("ggplot2")
-library("plotly")
+#vehicle_deaths <- read.csv("data/Accident Mortality by State.csv")
 
 
 number_of_shootings <- nrow(data)
@@ -29,14 +30,18 @@ west_of_the_mississppi <- filter(data, long <  -90) %>%
 lat <- select(data, lat)
 long <- select(data, long)
 
+#Parkland data
+parkland <- filter(data, city == "Pompano Beach (Parkland)")
+p_date <- parkland[1,1]
+p_location <- parkland[1,3]
+p_killed <- parkland[1,5]
+p_injured <- parkland[1,6]
+p_damage <- parkland[1,9]
+#Summary table
 
-data$damage = data$num_killed + data$num_injured
-
-visualization <- ggplot(map_data("usa")) + 
-  geom_polygon(aes(x = long, y = lat)) +
-  geom_point(data = data, mapping = aes(x = long, y = lat),
-             color = "red", size = (data$most_damage / 5)) 
-
+sum_table <- group_by(data, state) %>% 
+  summarise(Damage = sum(num_killed + num_injured)) %>% 
+  arrange(-Damage)
 
 
 graph <- list(
@@ -73,17 +78,23 @@ states_by_damage <- select(data, state, damage) %>%
                            vjust=0, color="red", size=2.5)
   
 state_pop$state = state_pop$State
-with_pop <- left_join(state_pop, data, copy = "state") 
+with_pop <- left_join(state_pop, data, by = "state") 
 with_pop$State <- NULL
 with_pop$most_damage <- NULL
 
 by_pop <- group_by(with_pop, state) %>% 
-  summarise(mean(X2018.Population), sum(damage))
+ summarise(pop = mean(X2018.Population), dam = sum(damage))
+
+
+
 
 cleaned_by_pop <- na.omit(by_pop) 
 
 # ggplot states by size and state 
-
+state_and_pop <- ggplot(data = cleaned_by_pop) +
+  geom_col(mapping = aes(x = state, y = pop)) + 
+  geom_col(mapping = aes(x = state, y = dam, fill = "red")) +
+  coord_flip() + labs(fill = "Damage")
   
   
   
