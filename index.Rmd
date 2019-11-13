@@ -3,7 +3,7 @@ title: "Shootings Analysis"
 output: html_document
 ---
 
-```{r setup, include = FALSE, echo=FALSE}
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 source('analysis.R')
 library("knitr")
