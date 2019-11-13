@@ -43,6 +43,9 @@ sum_table <- group_by(data, state) %>%
   summarise(Damage = sum(num_killed + num_injured)) %>% 
   arrange(-Damage)
 
+damage <- sum(sum_table$Damage)
+top10_damage <- round(sum(sum_table$Damage[1:10])/ damage * 100, digits=2)
+
 
 graph <- list(
   scope = 'usa',
@@ -64,8 +67,7 @@ usa_plot <- plot_geo(data, x = ~long, y = ~lat) %>%
     hoverinfo = "text"
   ) %>%
   layout(
-    title = 'Shootings in 2018 <br />(Hover for more details)', geo = graph
-  )
+    title = 'Shootings in 2018 <br />(Hover for more details)', geo = graph)
 
 #Shooting by state
 
@@ -94,7 +96,9 @@ cleaned_by_pop <- na.omit(by_pop)
 state_and_pop <- ggplot(data = cleaned_by_pop) +
   geom_col(mapping = aes(x = state, y = pop)) + 
   geom_col(mapping = aes(x = state, y = dam, fill = "red")) +
-  coord_flip() + labs(fill = "Damage")
+  coord_flip() + labs(fill = "Damage") + 
+  ggtitle("Damage vs. State Population") +
+  labs(y = "People")
   
   
   

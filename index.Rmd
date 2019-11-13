@@ -3,7 +3,7 @@ title: "Shootings Analysis"
 output: html_document
 ---
 
-```{r setup, include = TRUE, echo=FALSE}
+```{r setup, include = FALSE, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 source('analysis.R')
 library("knitr")
@@ -15,37 +15,43 @@ lost and the city most impacted (impact is measured as the sum of
 victims killed and victims injured) was `r most_impacted_city`. 
 Further analysis was done broadly dividing the United States into 
 two reigons; West and East of the Mississippi. The longitude used 
-to create the reigons was -90 degrees. East of the Mississippi, the impact score totaled, `r east_of_the_mississppi`. West of the
+to create the regions was -90 degrees. East of the Mississippi, the impact score totaled, `r east_of_the_mississppi`. West of the
 Mississippi scored, `r west_of_the_mississppi`. There were
 significantly more shootings that occured East of the Mississippi.
 
 ## Summary Table
-```{r sum_table, echo=FALSE}
+```{r sum_table, echo=FALSE, warning=FALSE}
 kable(sum_table)
 ```
 
+Of the `r damage` total people directly affected by gun violence, `r top10_damage`% of those affected occured in the top ten states listed.
+
 ## Parkland
-On `p_date`, Nikolas Cruz open fired on Marjory Stoneman Douglas High School. He killed `p_killed` and injured `p_injured`. A total of `p_damage` were affected by his actions. This number however is not representative of the greater impact of Cruz's action. Not included in this analysis are the grieving families and members of the greater Parkland community. Cruz was previously expelled from Marjory Stoneman Douglas High School and was living with a foster family after the death of his mother. He was astranged from his father.
+On `r p_date`, Nikolas Cruz open fired on Marjory Stoneman Douglas High School. He killed `r p_killed` and injured `r p_injured`. A total of `r p_damage` were affected by his actions. This number however is not representative of the greater impact of Cruz's action. Not included in this analysis are the grieving families and members of the greater Parkland community. Cruz was previously expelled from Marjory Stoneman Douglas High School and was living with a foster family after the death of his mother. He was astranged from his father.
+
 URL: https://www.nbcnews.com/news/us-news/police-respond-shooting-parkland-florida-high-school-n848101
 
 ## Map
-```{r usa_plot, echo=FALSE}
+```{r usa_plot, echo=FALSE, warning=FALSE}
 usa_plot
 ```
 
+Two insights revealed by this map is that visually, there appear to me more instances of shootings occuring East of the Mississippi river and West of the Mississippi shootings usually occurred in large cities and not rural ones.
+
 ## Damage vs. State Population
-```{r state_and_pop, echo=FALSE}
+```{r state_and_pop, echo=FALSE, warning=FALSE}
 state_and_pop
 ```
 
 I chose this visual encoding layout becaue I think that it starkly
 represents the how much shootings affect the country as a whole in
-regards to the sheer size of the United States. One insight I
-derived by this chart were that against the population of the
-United States, shootings affect a very, very small percentage of
-the overall population. The other insight I thought of, after
-reviewing this chart, is that the impact of guns/shootings in the
-United States is perhaps overstated by media outlets. Given that
-they indeed do affect a very small percentage of Americans, why
-are Americans spending so much time arguing about gun legislation?
+regards to the sheer size of the United States. It does this by 
+using color (or lack there of) and differences in length (or lack 
+ther of). One insight I derived by this chart were that against 
+the population of the United States, shootings affect a very, very
+small percentage of the overall population. The other insight I 
+thought of, after reviewing this chart, is that the impact of 
+guns/shootings in the United States is perhaps overstated by media
+outlets. Given that they indeed do affect a very small percentage of Americans, why are Americans spending so much time arguing 
+about gun legislation?
 
